@@ -1,10 +1,11 @@
 import { Tabs } from 'expo-router';
 import { View, Text, Platform } from 'react-native';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { Colors, Typography } from '../../constants/theme';
 
 type TabIconProps = {
   focused: boolean;
-  icon: string;
+  icon: React.ComponentProps<typeof MaterialIcons>['name'];
   label: string;
 };
 
@@ -14,22 +15,18 @@ function TabIcon({ focused, icon, label }: TabIconProps) {
       style={{
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 8,
+        paddingHorizontal: 16,
+        paddingVertical: 6,
         borderRadius: 16,
         backgroundColor: focused ? Colors.secondaryContainer : 'transparent',
-        minWidth: 64,
+        minWidth: 60,
       }}
     >
-      <Text
-        style={{
-          fontSize: 22,
-          color: focused ? Colors.onSecondaryContainer : Colors.onSurfaceVariant,
-          fontFamily: 'MaterialSymbolsOutlined',
-        }}
-      >
-        {icon}
-      </Text>
+      <MaterialIcons
+        name={icon}
+        size={22}
+        color={focused ? Colors.onSecondaryContainer : Colors.onSurfaceVariant}
+      />
       <Text
         style={{
           fontSize: 9,
@@ -93,7 +90,7 @@ export default function TabLayout() {
         name="reserva"
         options={{
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} icon="calendar_month" label="Reserva" />
+            <TabIcon focused={focused} icon="calendar-month" label="Reserva" />
           ),
         }}
       />
